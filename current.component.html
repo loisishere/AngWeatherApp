@@ -1,0 +1,7 @@
+<div>
+    <h3>{{currCtrl.location.city}}, {{currCtrl.location.state}}</h3>
+    {{currCtrl.weather.fahrenheit.temp}}
+    <img ng-src="{{currCtrl.weather.icon}}">
+    </div>
+{{today | date:"dd.mm.y"}}
+<weekly-weather style="border:1px black solid">loading...</weekly-weather>

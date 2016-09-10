@@ -1,7 +1,11 @@
-<div>
-    <h3>{{currCtrl.location.city}}, {{currCtrl.location.state}}</h3>
-    {{currCtrl.weather.fahrenheit.temp}}
+<div class="row">
+    <div class="col-md-12">
+    <h4>{{currCtrl.location.city}}, {{currCtrl.location.state}}</h4>
+        </div>
+    <div class="col-md-12">
+   <h1>{{currCtrl.weather.fahrenheit.temp}}</h1>
+        </div>
     <img ng-src="{{currCtrl.weather.icon}}">
     </div>
 {{today | date:"dd.mm.y"}}
-<weekly-weather style="border:1px black solid">loading...</weekly-weather>
+<weekly-weather>loading...</weekly-weather>

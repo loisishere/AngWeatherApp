@@ -1,3 +1,7 @@
-<div>
-    {{weekCtrl.weekly}}
+<div class = "row">
+<span class="col-md-2" ng-repeat="day in weekCtrl.weekly">
+    <h3>{{day.date.weekday}}</h3>
+    {{day.date.month}}/{{day.date.day}}/{{day.date.year}}
+    <p>High:{{day.high.fahrenheit}}/Low:{{day.low.fahrenheit}}</p>
+    </span>
     </div>

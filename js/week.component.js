@@ -1,27 +1,12 @@
 (function(angular){
 var app = angular.module('weather-app');
-
-//service to handle the GPS http request
-app.service('weeklyLocationService',['$http',function($http){
-	//need to get the current location of the user
-this.currentLocal = function(){
-	return $http.get('http://ip-api.com/json');
-}
-}]);
-
-//service to handle the weather http request: 4c2158628fdf88ec
-    //API
-app.service('weeklyWeatherService',['$http',function($http){
-	//need to get the current location of the user
-this.weeklyWeather = function(lon, lat){
-	return $http.get('http://api.wunderground.com/api/4c2158628fdf88ec/forecast/q/'+ lat +","+lon+".json");
-}
-}]);
-
 //the controller function
-function weeklyWeatherCtrl($http,weeklyWeatherService,weeklyLocationService){
+function weeklyWeatherCtrl($http,weatherService,locationService){
+    console.log(weatherService.today);
+    var self = this;
+    
     self.weekly = [];
-weeklyLocationService.currentLocal().then(function(res){	weeklyWeatherService.weeklyWeather(res.data.lon,res.data.lat).then(function(data){
+locationService.currentLocal().then(function(res){	weatherService.weeklyWeather(res.data.lon,res.data.lat,"forecast").then(function(data){
 self.weekly = data.data.forecast.simpleforecast.forecastday;
 console.log(self.weekly[1].date.day);
 });

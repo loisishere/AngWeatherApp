@@ -1,6 +1,6 @@
 (function(angular){
 var app = angular.module('weather-app');
-
+    
 //service to handle the GPS http request
 app.service('locationService',['$http',function($http){
 	//need to get the current location of the user
@@ -13,8 +13,8 @@ this.currentLocal = function(){
     //API
 app.service('weatherService',['$http',function($http){
 	//need to get the current location of the user
-this.currentWeather = function(lon, lat){
-	return $http.get('http://api.wunderground.com/api/4c2158628fdf88ec/conditions/q/'+ lat +","+lon+".json");
+this.weeklyWeather = function(lon, lat,service){
+	return $http.get('http://api.wunderground.com/api/4c2158628fdf88ec/'+service+'/q/'+ lat +","+lon+".json");
 }
 }]);
 
@@ -26,7 +26,7 @@ function currentWeatherCtrl($http,weatherService,locationService){
     self.today = new Date();
 locationService.currentLocal().then(function(res){
 	self.location = {"city":res.data.city, "state":res.data.region,"zip":res.data.zip,"country":res.data.conntryCode};
-	weatherService.currentWeather(res.data.lon,res.data.lat).then(function(data){
+	weatherService.currentWeather(res.data.lon,res.data.lat, "conditions").then(function(data){
 
         self.weather={
             "fahrenheit":{
